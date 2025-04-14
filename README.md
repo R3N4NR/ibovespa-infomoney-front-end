@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# 📊 Front-End de Análise de Dados Financeiros
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto React para análise visual de dados financeiros com gráficos interativos, tabelas dinâmicas e integração via WebSocket.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Tecnologias Utilizadas
 
-### `npm start`
+- **React 19**
+- **Zustand** para gerenciamento de estado
+- **ApexCharts** e **Chart.js** para visualização de dados
+- **Bootstrap** e **React-Bootstrap** para estilização
+- **Axios** para requisições HTTP
+- **Socket.IO** para comunicação em tempo real
+- **Jest** e **Testing Library** para testes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Estrutura do Projeto
 
-### `npm test`
+# 📊 Front-End de Análise de Dados Financeiros
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Este é um projeto React para análise visual de dados financeiros com gráficos interativos, tabelas dinâmicas e integração via WebSocket.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Tecnologias Utilizadas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React 19**
+- **Zustand** para gerenciamento de estado
+- **ApexCharts** e **Chart.js** para visualização de dados
+- **Bootstrap** e **React-Bootstrap** para estilização
+- **Axios** para requisições HTTP
+- **Socket.IO** para comunicação em tempo real
+- **Jest** e **Testing Library** para testes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📁 Estrutura do Projeto
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+src/
+├── components/     # Componentes reutilizáveis
+├── hooks/          # Hooks customizados
+├── routes/         # Requisições de dados mockadas ou reais
+├── services/       # Integração WebSocket
+├── store/          # Zustand store
+├── utils/          # Funções auxiliares
+├── App.jsx         # Componente principal
+├── index.jsx       # Ponto de entrada
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ▶️ Como rodar o projeto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Instale as dependências com `npm install`
+Inicie o projeto com `npm start` 
+Acesse em `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+📌 Funcionalidades
+Visualização de dados com gráficos interativos
 
-## Learn More
+Filtros por data e categoria
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Tabela dinâmica de ativos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Atualização em tempo real via WebSocket
 
-### Code Splitting
+Gerenciamento de estado com Zustand
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Tratamento de erros com Error Boundaries
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🧠 Autor 
+Feito por Renan Ramalho.
+Contribuições são bem-vindas! 👋
