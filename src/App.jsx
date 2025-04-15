@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import MainTable from './components/Table/Table';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import DataAnalysis from './components/DataAnalysis/DataAnalysis';
+import { Summary } from './components/Summary/Summary';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
    
       <Header />
     <ErrorBoundary>
+    <Summary/>
         <Container fluid>
           <Row>
             <Col>

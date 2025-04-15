@@ -3,24 +3,25 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { months, years } from '../../utils/dateConfig.js'; 
 import './Date.css';
+import { useDateSelectStore } from '../../store/useDateSelectStore';
 
-function DateSelector({ onDateChange }) {
+function DateSelector() {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(today);
+  const { setDate } = useDateSelectStore();
 
   const selectedDay = selectedDate.getDate();
   const selectedMonth = selectedDate.getMonth();
   const selectedYear = selectedDate.getFullYear();
 
-  
   const daysInMonth = useMemo(() => {
     return new Date(selectedYear, selectedMonth + 1, 0).getDate();
   }, [selectedYear, selectedMonth]);
 
   useEffect(() => {
     const formatted = selectedDate.toISOString().split("T")[0]; 
-    onDateChange(formatted);
-  }, [selectedDate, onDateChange]);
+    setDate(formatted);
+  }, [selectedDate, setDate]);
 
   const scrollableMenuStyle = {
     maxHeight: '200px',
@@ -37,7 +38,6 @@ function DateSelector({ onDateChange }) {
 
   return (
     <div className='date-select'>
-     
       <Dropdown>
         <Dropdown.Toggle variant="secondary">
           {selectedDay}
@@ -51,7 +51,6 @@ function DateSelector({ onDateChange }) {
         </Dropdown.Menu>
       </Dropdown>
 
-    
       <Dropdown>
         <Dropdown.Toggle variant="secondary">
           {months[selectedMonth]}
@@ -65,7 +64,6 @@ function DateSelector({ onDateChange }) {
         </Dropdown.Menu>
       </Dropdown>
 
-     
       <Dropdown>
         <Dropdown.Toggle variant="secondary">
           {selectedYear}

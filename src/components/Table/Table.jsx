@@ -8,12 +8,12 @@ import { Table, Header, HeaderRow, Body, Row, HeaderCell, Cell } from '@table-li
 import { useTheme } from '@table-library/react-table-library/theme';
 import { getTheme } from '@table-library/react-table-library/baseline';
 import DateSelector from "../Date/Date";
-import { getTodayFormatted } from "../../utils/dateConfig";
+import { convertToDayMonthYear } from "../../utils/dateConfig";
+import { useDateSelectStore } from '../../store/useDateSelectStore';
 
 const MainTable = () => {
   const [search, setSearch] = useState("");
-  const [dateSelected, setDateSelected] = useState(getTodayFormatted());
-
+  const dateSelected = useDateSelectStore((state) => state.date);
   const selectedOption = useTableDropdownStore((state) => state.selectedOption);
   const { dados, loading } = useStockByDate(dateSelected);
 
@@ -51,7 +51,6 @@ const MainTable = () => {
 
   const theme = useTheme(getTheme());
 
-  // Verificando se os dados estão vazios
   const isDataEmpty = filteredData.length === 0;
 
   return (
@@ -67,7 +66,7 @@ const MainTable = () => {
       />
 
       <Suspense fallback={<div>Carregando tabela...</div>}>
-        <DateSelector onDateChange={setDateSelected} />
+      <DateSelector />
         <Table data={data} theme={theme}>
           {(tableList) => (
             <>
@@ -100,7 +99,7 @@ const MainTable = () => {
                       <Cell>{item.variacao}</Cell>
                       <Cell>{item.val_min}</Cell>
                       <Cell>{item.val_max}</Cell>
-                      <Cell>{item.date}</Cell>
+                      <Cell>{convertToDayMonthYear(item.date)}</Cell>
                     </Row>
                   ))
                 )}

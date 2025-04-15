@@ -2,44 +2,54 @@ import { useEffect, useState } from 'react';
 import { connectWebSocket, addWebSocketListener, removeWebSocketListener } from '../services/websocket';
 import { getStockByDate } from '../routes/getStockByDate';
 import { useTableDropdownStore } from '../store/useTableDropdownStore';
+import { useDateSelectStore } from '../store/useDateSelectStore';
 
-export default function useStockByDate(date) {
+export default function useStockByDate() {
   const [altas, setAltas] = useState([]);
   const [baixas, setBaixas] = useState([]);
   const [mensagens, setMensagens] = useState([]);
-  
+
   const selectedOption = useTableDropdownStore((state) => state.selectedOption);
+  const { date } = useDateSelectStore();
 
   useEffect(() => {
-    const handleWebSocketData = (data) => {
-      console.log("Dados recebidos via WebSocket:", data);
+    if (!date) return;
 
-      setMensagens((prev) => [...prev, data]);
+    let debounceTimer = setTimeout(() => {
+      setAltas([]);
+      setBaixas([]);
+      setMensagens([]);
 
-      if (Array.isArray(data)) {
-        const novasAltas = data.filter(item => parseFloat(item.variacao.replace(",", ".")) > 0);
-        const novasBaixas = data.filter(item => parseFloat(item.variacao.replace(",", ".")) < 0);
+      const handleWebSocketData = (data) => {
+        console.log("Dados recebidos via WebSocket:", data);
 
-        setAltas(prevAltas => [...prevAltas, ...novasAltas]);
-        setBaixas(prevBaixas => [...prevBaixas, ...novasBaixas]);
-      } else {
-        console.error("Os dados recebidos não são um array:", data);
-      }
-    };
+        setMensagens((prev) => [...prev, data]);
 
+        if (Array.isArray(data)) {
+          const novasAltas = data.filter(item => parseFloat(item.variacao.replace(",", ".")) > 0);
+          const novasBaixas = data.filter(item => parseFloat(item.variacao.replace(",", ".")) < 0);
 
-    connectWebSocket();
-    addWebSocketListener(handleWebSocketData);
+          setAltas((prev) => [...prev, ...novasAltas]);
+          setBaixas((prev) => [...prev, ...novasBaixas]);
+        } else {
+          console.error("Os dados recebidos não são um array:", data);
+        }
+      };
 
-    getStockByDate(date).then((res) => {
-      setAltas(res.altas);
-      setBaixas(res.baixas);
-    });
+      connectWebSocket();
+      addWebSocketListener(handleWebSocketData);
 
-    
-    return () => {
-      removeWebSocketListener(handleWebSocketData);
-    };
+      getStockByDate(date).then((res) => {
+        setAltas(res.altas);
+        setBaixas(res.baixas);
+      });
+
+      return () => {
+        removeWebSocketListener(handleWebSocketData);
+      };
+    }, 400); 
+
+    return () => clearTimeout(debounceTimer);
   }, [date]);
 
   const dadosFiltrados = selectedOption === 'Altas' ? altas : baixas;
