@@ -54,7 +54,7 @@ const CustomChart = () => {
     <>
       <Container className="d-flex gap-2 align-items-center mb-3">
         <DropdownChart />
-        <span>{dados?.length || 0}</span>
+        <span>Números de ativos: {dados?.length || 0}</span>
       </Container>
 
       <Container className="custom-legend d-flex flex-wrap gap-2 mb-4">

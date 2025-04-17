@@ -5,7 +5,6 @@ export async function getSummaryData(date) {
 
         if (!response.ok) throw new Error("Erro ao buscar os dados");
         const data = await response.json();
-        console.log('DADOS',data)
         return { data };
     } catch (err) {
         console.error("Erro ao buscar dados da API:", err);

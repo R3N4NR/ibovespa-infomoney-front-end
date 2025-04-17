@@ -21,8 +21,7 @@ export default function useStockByDate() {
       setMensagens([]);
 
       const handleWebSocketData = (data) => {
-        console.log("Dados recebidos via WebSocket:", data);
-
+    
         setMensagens((prev) => [...prev, data]);
 
         if (Array.isArray(data)) {

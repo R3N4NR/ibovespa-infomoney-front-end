@@ -66,7 +66,7 @@ const MainTable = () => {
       />
 
       <Suspense fallback={<div>Carregando tabela...</div>}>
-      <DateSelector />
+      <DateSelector mode="full"/>
         <Table data={data} theme={theme}>
           {(tableList) => (
             <>
